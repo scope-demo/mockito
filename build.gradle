@@ -89,11 +89,12 @@ dependencies {
     testRuntime configurations.compileOnly
 
     testUtil sourceSets.test.output
-    testAgent "com.undefinedlabs.scope:scope-agent:0.1.7-beta.3"
+    testAgent "com.undefinedlabs.scope:scope-agent:0.1.7-beta.4"
 }
 
 test {
     jvmArgs = ["-javaagent:${configurations.testAgent.singleFile}"]
+    /*jvmArgs = ["-javaagent:/Users/drodriguezhdez/.m2/repository/com/undefinedlabs/scope/scope-agent/0.1.7-beta.4-SNAPSHOT/scope-agent-0.1.7-beta.4-SNAPSHOT.jar"]*/
 }
 
 

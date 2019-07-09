@@ -1,0 +1,5 @@
+version: "1"
+rules:
+    - base: release/3.x
+      upstream: mockito:release/3.x
+      mergeMethod: rebase

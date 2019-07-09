@@ -71,6 +71,7 @@ allprojects { proj ->
 
 configurations {
     testUtil //TODO move to separate project
+    testAgent
 }
 
 dependencies {
@@ -88,7 +89,13 @@ dependencies {
     testRuntime configurations.compileOnly
 
     testUtil sourceSets.test.output
+    testAgent "com.undefinedlabs.scope:scope-agent:0.1.7-beta.3"
 }
+
+test {
+    jvmArgs = ["-javaagent:${configurations.testAgent.singleFile}"]
+}
+
 
 wrapper {
     gradleVersion = '5.3.1'

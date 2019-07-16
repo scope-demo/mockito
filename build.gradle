@@ -89,15 +89,11 @@ dependencies {
     testRuntime configurations.compileOnly
 
     testUtil sourceSets.test.output
-    testAgent "com.undefinedlabs.scope:scope-agent:0.1.7"
+    testAgent "com.undefinedlabs.scope:scope-agent:0.1.8-beta.1"
 }
 
 test {
     jvmArgs = ["-javaagent:${configurations.testAgent.singleFile}"]
-
-    testLogging {
-        showStandardStreams = true
-    }
 }
 
 

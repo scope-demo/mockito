@@ -12,7 +12,7 @@ pipeline {
     post {
         always {
             node('master') {
-                 archiveArtifacts artifacts: '**/scope_*.log'
+                 archiveArtifacts artifacts: '/var/log/scope/scope_*.log'
                  sh 'rm -f scope_*.log'
             }
         }

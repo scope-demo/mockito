@@ -61,6 +61,7 @@ public class InvocationContainerImplTest {
             };
             t[i].setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
                 public void uncaughtException(Thread t, Throwable e) {
+                    System.out.println("----------------------------- UncaughtException: " + t + ", exception: " + e);
                     exceptions.add(e);
                 }
             });

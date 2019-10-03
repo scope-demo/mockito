@@ -1,0 +1,7 @@
+scope:
+    logger_level: info
+    instrumentation:
+        enabled: true
+        testsframeworks:
+            code_coverage: false
+            code_coverage_base_packages: 'org.mockito'

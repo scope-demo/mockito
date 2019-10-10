@@ -2249,7 +2249,7 @@ public class Mockito extends ArgumentMatchers {
      * This method has the same behavior as {@link #verifyNoMoreInteractions(Object...)}.
      *
      * @param mocks to be verified
-     * @deprecated Since 3.x.x. Please migrate your code to {@link #verifyNoInteractions(Object...)}
+     * @deprecated Since 3.0.1. Please migrate your code to {@link #verifyNoInteractions(Object...)}
      */
     @Deprecated
     public static void verifyZeroInteractions(Object... mocks) {
@@ -2270,7 +2270,7 @@ public class Mockito extends ArgumentMatchers {
      * See examples in javadoc for {@link Mockito} class
      *
      * @param mocks to be verified
-     * @since 3.x.x
+     * @since 3.0.1
      */
     public static void verifyNoInteractions(Object... mocks) {
         MOCKITO_CORE.verifyNoInteractions(mocks);
@@ -2576,7 +2576,7 @@ public class Mockito extends ArgumentMatchers {
      * <p>
      * <code>InOrder</code> verification is 'greedy', but you will hardly ever notice it.
      * If you want to find out more, read
-     * <a href="https://github.com/mockito/mockito/wiki/Greedy-algorithm-of-verfication-InOrder">this wiki page</a>.
+     * <a href="https://github.com/mockito/mockito/wiki/Greedy-algorithm-of-verification-InOrder">this wiki page</a>.
      * <p>
      * As of Mockito 1.8.4 you can verifyNoMoreInteractions() in order-sensitive way. Read more: {@link InOrder#verifyNoMoreInteractions()}
      * <p>

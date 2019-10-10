@@ -94,7 +94,12 @@ dependencies {
 }
 
 test {
-    jvmArgs = ["-javaagent:${configurations.testAgent.singleFile}"]
+
+    if(project.hasProperty('externalJavaAgentPath')){
+        jvmArgs = ["-javaagent:${project.property('externalJavaAgentPath')}"]
+    } else{
+        jvmArgs = ["-javaagent:${configurations.testAgent.singleFile}"]
+    }
 
     /*testLogging {
         showStandardStreams = true

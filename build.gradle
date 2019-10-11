@@ -90,7 +90,7 @@ dependencies {
     testRuntime configurations.compileOnly
 
     testUtil sourceSets.test.output
-    testAgent "com.undefinedlabs.scope:scope-agent:0.2.0"
+    testAgent "com.undefinedlabs.scope:scope-agent:0.2.1-beta.1"
 }
 
 test {
@@ -101,8 +101,16 @@ test {
         jvmArgs = ["-javaagent:${configurations.testAgent.singleFile}"]
     }
 
-    /*testLogging {
-        showStandardStreams = true
+/*    testLogging {
+
+        afterSuite { desc, result ->
+            if (!desc.parent) { // will match the outermost suite
+                def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+                def startItem = '|  ', endItem = '  |'
+                def repeatLength = startItem.length() + output.length() + endItem.length()
+                println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+            }
+        }
     }*/
 }
 

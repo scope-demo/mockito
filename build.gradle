@@ -90,7 +90,7 @@ dependencies {
     testRuntime configurations.compileOnly
 
     testUtil sourceSets.test.output
-    testAgent "com.undefinedlabs.scope:scope-agent:0.2.1"
+    testAgent "com.undefinedlabs.scope:scope-agent:0.2.2-beta.2"
 }
 
 test {

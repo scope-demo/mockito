@@ -1,7 +1,6 @@
 scope:
-    logger_level: info
+    code_path: true
+    code_path_base_packages: "org.mockito"
     instrumentation:
-        enabled: true
-        testsframeworks:
-            code_coverage: false
-            code_coverage_base_packages: 'org.mockito'
+        http:
+            payloads: true

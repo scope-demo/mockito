@@ -5,6 +5,7 @@
 package org.mockito.internal.exceptions;
 
 import static org.mockito.internal.reporting.Pluralizer.pluralize;
+import static org.mockito.internal.reporting.Pluralizer.stubbings;
 import static org.mockito.internal.reporting.Pluralizer.were_exactly_x_interactions;
 import static org.mockito.internal.util.StringUtil.join;
 
@@ -783,16 +784,17 @@ public class Reporter {
     }
 
     private static StringBuilder possibleArgumentTypesOf(InvocationOnMock invocation) {
-        Class<?>[] parameterTypes = invocation.getMethod().getParameterTypes();
-        if (parameterTypes.length == 0) {
+        Method method = invocation.getMethod();
+        if (method.getParameterCount() == 0) {
             return new StringBuilder("the method has no arguments.\n");
         }
 
+        Class<?>[] parameterTypes = method.getParameterTypes();
         StringBuilder stringBuilder = new StringBuilder("the possible argument indexes for this method are :\n");
         for (int i = 0, parameterTypesLength = parameterTypes.length; i < parameterTypesLength; i++) {
             stringBuilder.append("    [").append(i);
 
-            if (invocation.getMethod().isVarArgs() && i == parameterTypesLength - 1) {
+            if (method.isVarArgs() && i == parameterTypesLength - 1) {
                 stringBuilder.append("+] ").append(parameterTypes[i].getComponentType().getSimpleName()).append("  <- Vararg").append("\n");
             } else {
                 stringBuilder.append("] ").append(parameterTypes[i].getSimpleName()).append("\n");
@@ -882,9 +884,9 @@ public class Reporter {
 
     public static UnnecessaryStubbingException formatUnncessaryStubbingException(Class<?> testClass, Collection<Invocation> unnecessaryStubbings) {
         StringBuilder stubbings = new StringBuilder();
-        int count = 1;
+        int count = 0;
         for (Invocation u : unnecessaryStubbings) {
-            stubbings.append("\n  ").append(count++).append(". ").append(u.getLocation());
+            stubbings.append("\n  ").append(++count).append(". ").append(u.getLocation());
         }
         String heading = (testClass != null)?
                 "Unnecessary stubbings detected in test class: " + testClass.getSimpleName() :
@@ -893,7 +895,7 @@ public class Reporter {
         return new UnnecessaryStubbingException(join(
                 heading,
                 "Clean & maintainable test code requires zero unnecessary code.",
-                "Following stubbings are unnecessary (click to navigate to relevant line of code):" + stubbings,
+                "There are " + count + " unnecessary " + stubbings(count) + " (click to navigate to relevant line of code):" + stubbings,
                 "Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class."
         ));
     }
